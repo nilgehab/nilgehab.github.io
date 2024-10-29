@@ -20,9 +20,12 @@
                 border-radius: 15px;
                 padding: 20px;
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-                width: 300px; /* Kart genişliği */
+                width: 90%; /* Kart genişliği %90 */
+                max-width: 400px; /* Maksimum kart genişliği */
+                height: auto; /* Kart yüksekliği otomatik ayarlandı */
                 max-height: 80%; /* Kart yüksekliği */
                 overflow: hidden; /* Kart içinde taşma engellendi */
+                margin: 0 10px; /* Sağdan ve soldan boşluk */
             }
             .profile-image {
                 width: 80px;
@@ -110,6 +113,37 @@
                 color: #aaa;
                 margin-left: auto; /* Sağ tarafa yaslamak için */
             }
+
+            /* Medya Sorguları ile Responsive Tasarım */
+            @media (max-width: 600px) {
+                .card {
+                    width: 95%; /* Mobilde %95 genişlik */
+                }
+                h1 {
+                    font-size: 1.2em; /* Başlık boyutunu küçült */
+                }
+                .description {
+                    font-size: 0.8em; /* Açıklama font boyutunu küçült */
+                }
+                .track-name {
+                    font-size: 0.9em; /* Parça adı font boyutunu küçült */
+                }
+                .track-artists {
+                    font-size: 0.7em; /* Sanatçı adı font boyutunu küçült */
+                }
+                .played-at {
+                    font-size: 0.7em; /* Oynatma zamanı font boyutunu küçült */
+                }
+            }
+
+            @media (max-width: 400px) {
+                h1 {
+                    font-size: 1.1em; /* Daha küçük ekranlar için başlık boyutunu daha da küçült */
+                }
+                .description {
+                    font-size: 0.75em; /* Daha küçük ekranlar için açıklama font boyutunu küçült */
+                }
+            }
         </style>
     </head>
     <body>
@@ -125,6 +159,15 @@
             <h2>Son Dinlediklerim</h2>
             <div class="recent-tracks">
     
+                    <div class="track-info">
+                        <img src="https://i.scdn.co/image/ab67616d0000b273be43d6bffdf12201926e5d01" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Dönersen Islık Çal</div>
+                            <div class="track-artists">Manuş Baba</div>
+                        </div>
+                        <div class="played-at">23:47<br>Bugün</div>
+                    </div>
+            
                     <div class="track-info">
                         <img src="https://i.scdn.co/image/ab67616d0000b2731844ac86613302a39a712271" class="track-image">
                         <div class="track-details">
@@ -294,15 +337,6 @@
                             <div class="track-artists">Hande Mehan, Cem Adrian</div>
                         </div>
                         <div class="played-at">22:29<br>Bugün</div>
-                    </div>
-            
-                    <div class="track-info">
-                        <img src="https://i.scdn.co/image/ab67616d0000b27309dd7da0003a4a677e21f2c5" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">Suspus</div>
-                            <div class="track-artists">Ceza</div>
-                        </div>
-                        <div class="played-at">22:16<br>Bugün</div>
                     </div>
             
             </div>
