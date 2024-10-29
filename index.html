@@ -18,39 +18,39 @@
             .card {
                 background: rgba(0, 0, 0, 0.7); /* Kart arka planı */
                 border-radius: 15px;
-                padding: 20px;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+                padding: 30px; /* Daha fazla iç boşluk */
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Gölgeyi artır */
                 width: 90%; /* Kart genişliği %90 */
-                max-width: 400px; /* Maksimum kart genişliği */
+                max-width: 500px; /* Maksimum kart genişliği artırıldı */
                 height: auto; /* Kart yüksekliği otomatik ayarlandı */
-                max-height: 80%; /* Kart yüksekliği */
+                max-height: 90%; /* Kart yüksekliği */
                 overflow: hidden; /* Kart içinde taşma engellendi */
                 margin: 0 10px; /* Sağdan ve soldan boşluk */
             }
             .profile-image {
-                width: 80px;
-                height: 80px;
+                width: 100px; /* Profil resmi boyutunu artır */
+                height: 100px; /* Profil resmi boyutunu artır */
                 border-radius: 50%;
-                margin-bottom: 15px;
+                margin-bottom: 20px; /* Alt boşluk artırıldı */
             }
             .social-icons {
-                margin: 15px 0;
+                margin: 20px 0; /* Sosyal ikonların boşlukları artırıldı */
             }
             .social-icons img {
-                width: 30px; /* İkon boyutu */
-                margin: 0 5px; /* İkonlar arası boşluk */
+                width: 40px; /* İkon boyutu artırıldı */
+                margin: 0 10px; /* İkonlar arası boşluk artırıldı */
             }
             h1 {
                 margin: 0;
-                font-size: 1.5em;
+                font-size: 2em; /* Başlık boyutu artırıldı */
             }
             .description {
-                font-size: 0.9em;
-                margin: 10px 0;
+                font-size: 1.1em; /* Açıklama font boyutu artırıldı */
+                margin: 10px 0; /* Açıklama üst ve alt boşlukları artırıldı */
             }
             .recent-tracks {
                 margin-top: 20px;
-                max-height: 200px; /* Son dinlediklerim bölümü yüksekliği */
+                max-height: 250px; /* Son dinlediklerim bölümü yüksekliği artırıldı */
                 overflow-y: auto; /* Taşma durumunda kaydırma */
                 scrollbar-width: thin; /* Firefox için ince kaydırma çubuğu */
                 scrollbar-color: #888 #333; /* Kaydırma çubuğu ve arka plan rengi */
@@ -58,7 +58,7 @@
 
             /* Webkit tarayıcılar için kaydırma çubuğu stilini belirleme */
             .recent-tracks::-webkit-scrollbar {
-                width: 10px; /* Kaydırma çubuğunun genişliği */
+                width: 12px; /* Kaydırma çubuğunun genişliği */
             }
 
             .recent-tracks::-webkit-scrollbar-track {
@@ -78,38 +78,39 @@
             .track-info {
                 display: flex;
                 align-items: center; /* Resim ve metinlerin hizalanması */
-                padding: 5px 0; /* Yüksekliği ayarlamak için */
+                padding: 10px 0; /* Yüksekliği ayarlamak için artırıldı */
                 border-bottom: 1px solid rgba(255, 255, 255, 0.3);
                 cursor: pointer; /* Üzerine gelindiğinde imlecin değişmesi */
                 position: relative; /* Üst bilgi için konumlandırma */
             }
             .track-image {
-                width: 40px; /* Kapak resmi boyutu */
-                height: 40px; /* Kapak resmi boyutu */
+                width: 60px; /* Kapak resmi boyutu artırıldı */
+                height: 60px; /* Kapak resmi boyutu artırıldı */
                 border-radius: 5px; /* Hafif yuvarlatma */
             }
             .track-details {
                 display: flex;
                 flex-direction: column; /* Sanatçı ve parça adı dikey olarak hizalanacak */
-                margin-left: 10px; /* Resim ile metin arasındaki boşluk */
+                margin-left: 15px; /* Resim ile metin arasındaki boşluk artırıldı */
                 flex: 1; /* Alanın eşit şekilde paylaşılması */
                 overflow: hidden; /* Taşmayı önle */
             }
             .track-name {
                 font-weight: bold;
+                font-size: 1em; /* Parça adı font boyutu artırıldı */
                 white-space: nowrap; /* Taşmayı önle */
                 overflow: hidden; /* Taşmayı önle */
                 text-overflow: ellipsis; /* Taşma durumunda üç nokta */
             }
             .track-artists {
-                font-size: 0.8em; /* Sanatçı adları font boyutu küçültüldü */
+                font-size: 0.9em; /* Sanatçı adı font boyutu artırıldı */
                 color: #aaa; /* Silik bir ton */
                 white-space: nowrap; /* Taşmayı önle */
                 overflow: hidden; /* Taşmayı önle */
                 text-overflow: ellipsis; /* Taşma durumunda üç nokta */
             }
             .played-at {
-                font-size: 0.8em;
+                font-size: 0.9em; /* Oynatma zamanı font boyutu artırıldı */
                 color: #aaa;
                 margin-left: auto; /* Sağ tarafa yaslamak için */
             }
@@ -120,28 +121,28 @@
                     width: 95%; /* Mobilde %95 genişlik */
                 }
                 h1 {
-                    font-size: 1.2em; /* Başlık boyutunu küçült */
+                    font-size: 1.8em; /* Başlık boyutunu küçült */
                 }
                 .description {
-                    font-size: 0.8em; /* Açıklama font boyutunu küçült */
+                    font-size: 1em; /* Açıklama font boyutunu küçült */
                 }
                 .track-name {
-                    font-size: 0.9em; /* Parça adı font boyutunu küçült */
+                    font-size: 1em; /* Parça adı font boyutunu küçült */
                 }
                 .track-artists {
-                    font-size: 0.7em; /* Sanatçı adı font boyutunu küçült */
+                    font-size: 0.8em; /* Sanatçı adı font boyutunu küçült */
                 }
                 .played-at {
-                    font-size: 0.7em; /* Oynatma zamanı font boyutunu küçült */
+                    font-size: 0.8em; /* Oynatma zamanı font boyutunu küçült */
                 }
             }
 
             @media (max-width: 400px) {
                 h1 {
-                    font-size: 1.1em; /* Daha küçük ekranlar için başlık boyutunu daha da küçült */
+                    font-size: 1.5em; /* Daha küçük ekranlar için başlık boyutunu daha da küçült */
                 }
                 .description {
-                    font-size: 0.75em; /* Daha küçük ekranlar için açıklama font boyutunu küçült */
+                    font-size: 0.9em; /* Daha küçük ekranlar için açıklama font boyutunu küçült */
                 }
             }
         </style>
@@ -159,6 +160,15 @@
             <h2>Son Dinlediklerim</h2>
             <div class="recent-tracks">
     
+                    <div class="track-info">
+                        <img src="https://i.scdn.co/image/ab67616d0000b27378f12ad8740b61f9331de878" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Defoluyorum</div>
+                            <div class="track-artists">Emir Can İğrek</div>
+                        </div>
+                        <div class="played-at">23:50<br>Bugün</div>
+                    </div>
+            
                     <div class="track-info">
                         <img src="https://i.scdn.co/image/ab67616d0000b273be43d6bffdf12201926e5d01" class="track-image">
                         <div class="track-details">
@@ -328,15 +338,6 @@
                             <div class="track-artists">Cem Adrian</div>
                         </div>
                         <div class="played-at">22:33<br>Bugün</div>
-                    </div>
-            
-                    <div class="track-info">
-                        <img src="https://i.scdn.co/image/ab67616d0000b273589ff7695e692a50ea4c35d8" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">Öyle Yalnız</div>
-                            <div class="track-artists">Hande Mehan, Cem Adrian</div>
-                        </div>
-                        <div class="played-at">22:29<br>Bugün</div>
                     </div>
             
             </div>
