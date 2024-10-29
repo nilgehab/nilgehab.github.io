@@ -80,16 +80,17 @@
                 width: 60px;
                 height: 60px;
                 border-radius: 5px;
-                margin-right: 15px; /* Parça görseli ve metin arasında boşluk */
+                margin-right: 15px;  /* Görsel ile parça adı arasındaki boşluk */
             }
             .track-details {
-                flex: 1; /* Alanın eşit şekilde paylaşılması */
+                flex: 1;  /* Alanın eşit şekilde paylaşılması */
                 display: flex;
-                flex-direction: column; /* Sanatçı ve parça adı dikey olarak hizalanacak */
+                flex-direction: column; /* Parça adı ve sanatçı adı dikey olarak hizalanacak */
             }
             .track-name {
                 font-weight: bold;
-                font-size: 1.1em; /* Parça adı font boyutu artırıldı */
+                font-size: 1em;
+                margin-bottom: 5px; /* Parça adı ile sanatçı adı arasındaki boşluk */
             }
             .track-artists {
                 font-size: 0.9em;
@@ -98,11 +99,8 @@
             .played-at {
                 font-size: 0.9em;
                 color: #aaa;
-                white-space: nowrap; /* Taşmayı önle */
                 margin-left: auto; /* Sağ tarafa yaslamak için */
-                text-align: right; /* Sağda hizala */
             }
-            /* Medya Sorguları ile Responsive Tasarım */
             @media (max-width: 600px) {
                 .card {
                     width: 95%;
@@ -112,15 +110,6 @@
                 }
                 .description {
                     font-size: 1em;
-                }
-                .track-name {
-                    font-size: 1em;
-                }
-                .track-artists {
-                    font-size: 0.8em;
-                }
-                .played-at {
-                    font-size: 0.8em;
                 }
             }
             @media (max-width: 400px) {
