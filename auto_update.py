@@ -5,6 +5,7 @@ import os
 from datetime import datetime
 import threading
 import msvcrt  # Windows'ta klavye girişi için kullanılır
+import git  # GitPython kütüphanesi
 
 # Spotify uygulamanızın bilgileri
 client_id = "645e194b1c514b1dbf780868d2128d0a"  # Kendi Client ID'nizi buraya yapıştırın
@@ -118,7 +119,7 @@ def update_html(recent_tracks):
 
             .recent-tracks::-webkit-scrollbar-thumb {
                 background-color: #888; /* Kaydırma çubuğunun rengi */
-                border-radius: 10px; /* Köşeleri yuvarlama */
+                border-radius: 10px; /* Köşeleri yuvarlatma */
             }
 
             .recent-tracks::-webkit-scrollbar-thumb:hover {
@@ -187,19 +188,19 @@ def update_html(recent_tracks):
         track_url = track['track']['external_urls']['spotify']
         track_image = track['track']['album']['images'][0]['url']  # İlk kapak resmini al
 
-        # Sanatçı adını kısaltma (60 karakter)
-        if len(artists) > 60:
-            artists = artists[:60] + '...'
+        # Sanatçı adını kısaltmak için
+        track_name_short = (track_name[:30] + '...') if len(track_name) > 30 else track_name
+        artists_short = (artists[:30] + '...') if len(artists) > 30 else artists
 
         html_content += f"""
-                    <div class="track-info" onclick="window.open('{track_url}', '_blank')">
-                        <img src="{track_image}" alt="{track_name} Kapak Resmi" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">{track_name}</div>
-                            <div class="track-artists">{artists}</div>
-                        </div>
-                        <div class="played-at">{time_str} - {date_str}</div>
+                <li class="track-info" onclick="window.open('{track_url}', '_blank');">
+                    <img src="{track_image}" alt="{track_name}" class="track-image">
+                    <div class="track-details">
+                        <div class="track-name">{track_name_short}</div>
+                        <div class="track-artists">{artists_short}</div>
                     </div>
+                    <div class="played-at">{time_str} - {date_str}</div>
+                </li>
         """
     
     html_content += """
@@ -210,12 +211,21 @@ def update_html(recent_tracks):
     </html>
     """
 
-    with open("index.html", "w", encoding='utf-8') as f:
+    # HTML dosyasını güncelle
+    with open("index.html", "w", encoding="utf-8") as f:
         f.write(html_content)
-    
-    print(f"Güncellendi: {datetime.now()}")
+        print("index.html dosyası güncellendi.")
+def git_push():
+    try:
+        repo = git.Repo(os.getcwd())  # Geçerli çalışma dizinindeki Git deposunu al
+        repo.git.add("index.html")  # index.html dosyasını ekle
+        repo.index.commit("index.html güncellendi")  # Değişiklikleri commit et
+        repo.git.push()  # Değişiklikleri GitHub'a gönder
+        print("index.html dosyası GitHub'a gönderildi.")  # Push yapıldığında bildirim
+    except Exception as e:
+        print("Git push sırasında hata oluştu:", e)
 
-def update_recent_tracks():
+def update_spotify_data():
     global update_count
     while True:
         access_token = get_access_token()
@@ -228,16 +238,15 @@ def update_recent_tracks():
                 recent_tracks = response.json()
                 update_html(recent_tracks)
                 update_count += 1
-            else:
-                print("Hata:", response.text)
-        time.sleep(120)  # 2 dakikada bir güncelle
+                print(f"{update_count}. güncelleme yapıldı.")
+                
+                # GitHub'a push işlemini güncellemelerden sonra gerçekleştir
+                git_push()
 
-def listen_for_keypress():
-    print("Çıkmak için herhangi bir tuşa basın...")
-    msvcrt.getch()  # Kullanıcıdan tuş girişi bekler
-    os._exit(0)  # Programdan çık
+        time.sleep(120)  # 2 dakika bekle
 
-# Ana fonksiyonlar
-if __name__ == "__main__":
-    threading.Thread(target=update_recent_tracks).start()  # Güncellemeleri başlat
-    listen_for_keypress()  # Klavye girişini dinle
+# Ana programın başlatılması
+threading.Thread(target=update_spotify_data).start()
+
+print("Uygulama çalışıyor. Çıkmak için herhangi bir tuşa basın.")
+msvcrt.getch()  # Kullanıcı bir tuşa bastığında uygulama duracak
