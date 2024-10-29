@@ -1,287 +1,314 @@
 
     <html>
     <head>
-        <title>Son Dinlediklerim</title>
+        <title>Kişisel Linktree Sayfam</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
-                background-color: #f0f4f8;
-                color: #333;
+                background: url('background.gif') no-repeat center center fixed; /* Arka plan GIF */
+                background-size: cover;
+                color: #fff;
                 margin: 0;
-                padding: 20px;
-            }
-            h1 {
-                color: #4a90e2;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
                 text-align: center;
             }
-            ul {
-                list-style-type: none;
-                padding: 0;
+            .card {
+                background: rgba(0, 0, 0, 0.7); /* Kart arka planı */
+                border-radius: 15px;
+                padding: 20px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+                width: 300px; /* Kart genişliği */
+                max-height: 80%; /* Kart yüksekliği */
+                overflow: hidden; /* Kart içinde taşma engellendi */
             }
-            li {
-                background: #fff;
+            .profile-image {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                margin-bottom: 15px;
+            }
+            .social-icons {
+                margin: 15px 0;
+            }
+            .social-icons img {
+                width: 30px; /* İkon boyutu */
+                margin: 0 5px; /* İkonlar arası boşluk */
+            }
+            h1 {
+                margin: 0;
+                font-size: 1.5em;
+            }
+            .description {
+                font-size: 0.9em;
                 margin: 10px 0;
-                padding: 15px;
-                border-radius: 8px;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-                transition: transform 0.2s;
-                display: flex;
-                align-items: center;
             }
-            li:hover {
-                transform: scale(1.02);
+            .recent-tracks {
+                margin-top: 20px;
+                max-height: 200px; /* Son dinlediklerim bölümü yüksekliği */
+                overflow-y: auto; /* Taşma durumunda kaydırma */
+                scrollbar-width: thin; /* Firefox için ince kaydırma çubuğu */
+                scrollbar-color: #888 #333; /* Kaydırma çubuğu ve arka plan rengi */
             }
+
+            /* Webkit tarayıcılar için kaydırma çubuğu stilini belirleme */
+            .recent-tracks::-webkit-scrollbar {
+                width: 10px; /* Kaydırma çubuğunun genişliği */
+            }
+
+            .recent-tracks::-webkit-scrollbar-track {
+                background: #333; /* Kaydırma çubuğunun arka planı */
+                border-radius: 10px; /* Köşeleri yuvarlama */
+            }
+
+            .recent-tracks::-webkit-scrollbar-thumb {
+                background-color: #888; /* Kaydırma çubuğunun rengi */
+                border-radius: 10px; /* Köşeleri yuvarlama */
+            }
+
+            .recent-tracks::-webkit-scrollbar-thumb:hover {
+                background-color: #555; /* Hover durumundaki rengi */
+            }
+
             .track-info {
                 display: flex;
-                justify-content: space-between;
-                align-items: center;
-                width: 100%;
+                align-items: center; /* Resim ve metinlerin hizalanması */
+                padding: 5px 0; /* Yüksekliği ayarlamak için */
+                border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+                cursor: pointer; /* Üzerine gelindiğinde imlecin değişmesi */
+                position: relative; /* Üst bilgi için konumlandırma */
+            }
+            .track-image {
+                width: 40px; /* Kapak resmi boyutu */
+                height: 40px; /* Kapak resmi boyutu */
+                border-radius: 5px; /* Hafif yuvarlatma */
+            }
+            .track-details {
+                display: flex;
+                flex-direction: column; /* Sanatçı ve parça adı dikey olarak hizalanacak */
+                margin-left: 10px; /* Resim ile metin arasındaki boşluk */
+                flex: 1; /* Alanın eşit şekilde paylaşılması */
+                overflow: hidden; /* Taşmayı önle */
             }
             .track-name {
                 font-weight: bold;
-                font-size: 1.2em;
+                white-space: nowrap; /* Taşmayı önle */
+                overflow: hidden; /* Taşmayı önle */
+                text-overflow: ellipsis; /* Taşma durumunda üç nokta */
             }
             .track-artists {
-                color: #888;
-                font-style: italic;  /* Eğik yazı stili */
-                margin-top: 5px;  /* Üstten boşluk */
+                font-size: 0.8em; /* Sanatçı adları font boyutu küçültüldü */
+                color: #aaa; /* Silik bir ton */
+                white-space: nowrap; /* Taşmayı önle */
+                overflow: hidden; /* Taşmayı önle */
+                text-overflow: ellipsis; /* Taşma durumunda üç nokta */
             }
             .played-at {
-                font-size: 0.9em;
+                font-size: 0.8em;
                 color: #aaa;
-            }
-            .track-image {
-                width: 50px;
-                height: 50px;
-                margin-right: 10px;
+                margin-left: auto; /* Sağ tarafa yaslamak için */
             }
         </style>
     </head>
     <body>
-        <h1>Son Dinlediklerim</h1>
-        <ul>
+        <div class="card">
+            <img src="profil_foto.jpg" alt="Profil Fotoğrafım" class="profile-image">
+            <h1>Ad Soyad</h1>
+            <p class="description">Açıklamanız burada yer alacak.</p>
+            <div class="social-icons">
+                <a href="https://github.com/kullanici_adi" target="_blank"><img src="github_logo.png" alt="GitHub"></a>
+                <a href="https://open.spotify.com/user/kullanici_adi" target="_blank"><img src="spotify_logo.png" alt="Spotify"></a>
+                <a href="https://instagram.com/kullanici_adi" target="_blank"><img src="instagram_logo.png" alt="Instagram"></a>
+            </div>
+            <div class="recent-tracks">
+                <h2>Son Dinlediklerim</h2>
+                <ul>
     
-            <li>
-                <img src="https://i.scdn.co/image/ab67616d0000b273c0731bb6f383687f40fd3a5a" alt="Cover" class="track-image">
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/0NWSbSANC3iTpKxSMXmQ1J" target="_blank">
-                        <span class="track-name">Katliam 2</span>
-                        <span class="track-artists">Massaka, Yener Çevik, Sansar Salvo, Anıl Piyancı, Velet, Monstar361, Defkhan, Contra, Gekko G</span>  <!-- Sanatçılar burada -->
-                    </a>
-                    <span class="played-at">29 October 2024, 18:06</span>
-                </div>
-            </li>
+                    <div class="track-info" onclick="window.open('https://open.spotify.com/track/5hxfGCnFX0ruGMVsPKZ9eU', '_blank')">
+                        <img src="https://i.scdn.co/image/ab67616d0000b27377c7da1eebf227e50a566d3e" alt="Yolu Yok Kapak Resmi" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Yolu Yok</div>
+                            <div class="track-artists">Ati242</div>
+                        </div>
+                        <div class="played-at">18:34 - Bugün</div>
+                    </div>
         
-            <li>
-                <img src="https://i.scdn.co/image/ab67616d0000b2738fb4a6f333c7e7a7ed446be6" alt="Cover" class="track-image">
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/2d9OOVDxGEYQhpp4O9R69n" target="_blank">
-                        <span class="track-name">Başım Belada</span>
-                        <span class="track-artists">Orchi, Çağrı Sinci</span>  <!-- Sanatçılar burada -->
-                    </a>
-                    <span class="played-at">29 October 2024, 18:00</span>
-                </div>
-            </li>
+                    <div class="track-info" onclick="window.open('https://open.spotify.com/track/0DGvKkcBCgd4UxRxKY0SqP', '_blank')">
+                        <img src="https://i.scdn.co/image/ab67616d0000b2739a96eafc1b0d25bde38723b6" alt="Sözler Şerefsiz Oldu Kapak Resmi" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Sözler Şerefsiz Oldu</div>
+                            <div class="track-artists">Norm Ender</div>
+                        </div>
+                        <div class="played-at">18:31 - Bugün</div>
+                    </div>
         
-            <li>
-                <img src="https://i.scdn.co/image/ab67616d0000b27366aba565571583e6c398ce0e" alt="Cover" class="track-image">
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/4HeXZwvwjFTnCLq6ASYngI" target="_blank">
-                        <span class="track-name">Skimde Değil</span>
-                        <span class="track-artists">Cegıd</span>  <!-- Sanatçılar burada -->
-                    </a>
-                    <span class="played-at">29 October 2024, 17:57</span>
-                </div>
-            </li>
+                    <div class="track-info" onclick="window.open('https://open.spotify.com/track/35UKWNaGBeCuL2cOdC44r1', '_blank')">
+                        <img src="https://i.scdn.co/image/ab67616d0000b2739160c3128858a69190276641" alt="Ölüme İnat Kapak Resmi" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Ölüme İnat</div>
+                            <div class="track-artists">Hidra</div>
+                        </div>
+                        <div class="played-at">18:28 - Bugün</div>
+                    </div>
         
-            <li>
-                <img src="https://i.scdn.co/image/ab67616d0000b27379dbe6c33d218de4aa59223b" alt="Cover" class="track-image">
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/0QuKutgaaa0Q1WUZEnrZ93" target="_blank">
-                        <span class="track-name">Sönen Sigaralar</span>
-                        <span class="track-artists">Ati242</span>  <!-- Sanatçılar burada -->
-                    </a>
-                    <span class="played-at">29 October 2024, 17:53</span>
-                </div>
-            </li>
+                    <div class="track-info" onclick="window.open('https://open.spotify.com/track/56iKL9ZrR5PDue1Z97undD', '_blank')">
+                        <img src="https://i.scdn.co/image/ab67616d0000b2734327bbb41791b5fdc8269a24" alt="Eskiya Kapak Resmi" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Eskiya</div>
+                            <div class="track-artists">Massaka, Sansar Salvo</div>
+                        </div>
+                        <div class="played-at">18:24 - Bugün</div>
+                    </div>
         
-            <li>
-                <img src="https://i.scdn.co/image/ab67616d0000b27339367660107b68d2a587efc7" alt="Cover" class="track-image">
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/40fqDPv4drwaKnX047hxY6" target="_blank">
-                        <span class="track-name">Yeraltı Edebiyatı</span>
-                        <span class="track-artists">Gazapizm</span>  <!-- Sanatçılar burada -->
-                    </a>
-                    <span class="played-at">29 October 2024, 17:50</span>
-                </div>
-            </li>
+                    <div class="track-info" onclick="window.open('https://open.spotify.com/track/7KiJY7W8c5cNXE9YwuVqlW', '_blank')">
+                        <img src="https://i.scdn.co/image/ab67616d0000b273621fe38a73b2a45e9be957d3" alt="Halen Kapak Resmi" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Halen</div>
+                            <div class="track-artists">Sagopa Kajmer, Dr. Fuchs</div>
+                        </div>
+                        <div class="played-at">18:21 - Bugün</div>
+                    </div>
         
-            <li>
-                <img src="https://i.scdn.co/image/ab67616d0000b2738870af90650ea8a386a297cf" alt="Cover" class="track-image">
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/3q9yRSQ9UGSlaDj5SUGZqq" target="_blank">
-                        <span class="track-name">Olmasa Da Olur</span>
-                        <span class="track-artists">No.1</span>  <!-- Sanatçılar burada -->
-                    </a>
-                    <span class="played-at">29 October 2024, 17:46</span>
-                </div>
-            </li>
+                    <div class="track-info" onclick="window.open('https://open.spotify.com/track/4qCvhgnQAP01JOJFvJoidH', '_blank')">
+                        <img src="https://i.scdn.co/image/ab67616d0000b27366aba565571583e6c398ce0e" alt="Anormal Kapak Resmi" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Anormal</div>
+                            <div class="track-artists">Cegıd</div>
+                        </div>
+                        <div class="played-at">18:17 - Bugün</div>
+                    </div>
         
-            <li>
-                <img src="https://i.scdn.co/image/ab67616d0000b2734327bbb41791b5fdc8269a24" alt="Cover" class="track-image">
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/7hvmCxOlmfi07zT7VpesfP" target="_blank">
-                        <span class="track-name">Iblis</span>
-                        <span class="track-artists">Massaka</span>  <!-- Sanatçılar burada -->
-                    </a>
-                    <span class="played-at">29 October 2024, 17:44</span>
-                </div>
-            </li>
+                    <div class="track-info" onclick="window.open('https://open.spotify.com/track/1kfXupjpLLLwSkzebqZT2X', '_blank')">
+                        <img src="https://i.scdn.co/image/ab67616d0000b27379dbe6c33d218de4aa59223b" alt="Telefon Kapak Resmi" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Telefon</div>
+                            <div class="track-artists">Ati242</div>
+                        </div>
+                        <div class="played-at">18:13 - Bugün</div>
+                    </div>
         
-            <li>
-                <img src="https://i.scdn.co/image/ab67616d0000b273cbad8a21da94fae3ebe96580" alt="Cover" class="track-image">
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/23V3mBeNSYuVUNcflnjyrd" target="_blank">
-                        <span class="track-name">Beni Burdan Çıkarın</span>
-                        <span class="track-artists">Pit10</span>  <!-- Sanatçılar burada -->
-                    </a>
-                    <span class="played-at">29 October 2024, 17:40</span>
-                </div>
-            </li>
+                    <div class="track-info" onclick="window.open('https://open.spotify.com/track/5RQOOES2NBTUhqhBaufWax', '_blank')">
+                        <img src="https://i.scdn.co/image/ab67616d0000b273d991934e42f8e437973958ad" alt="Çene Kemiklerimi Kırdım Kapak Resmi" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Çene Kemiklerimi Kırdım</div>
+                            <div class="track-artists">Tankurt Manas</div>
+                        </div>
+                        <div class="played-at">18:10 - Bugün</div>
+                    </div>
         
-            <li>
-                <img src="https://i.scdn.co/image/ab67616d0000b27366aba565571583e6c398ce0e" alt="Cover" class="track-image">
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/7DdvDxrc8iYum3tIdS7Lim" target="_blank">
-                        <span class="track-name">Herşeyin Bir Bedeli Var</span>
-                        <span class="track-artists">Cegıd</span>  <!-- Sanatçılar burada -->
-                    </a>
-                    <span class="played-at">29 October 2024, 17:37</span>
-                </div>
-            </li>
+                    <div class="track-info" onclick="window.open('https://open.spotify.com/track/6atCvarKS8XISxyxrt2OPc', '_blank')">
+                        <img src="https://i.scdn.co/image/ab67616d0000b2733afa9e1725e1658eb47364fa" alt="Büyüdüm Kapak Resmi" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Büyüdüm</div>
+                            <div class="track-artists">Şiir!, Heja</div>
+                        </div>
+                        <div class="played-at">18:08 - Bugün</div>
+                    </div>
         
-            <li>
-                <img src="https://i.scdn.co/image/ab67616d0000b273a140e824efaf5b690e205c7b" alt="Cover" class="track-image">
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/4aXbYXcwQhy7wmWeFJnOLw" target="_blank">
-                        <span class="track-name">Reenkarne</span>
-                        <span class="track-artists">Stabil</span>  <!-- Sanatçılar burada -->
-                    </a>
-                    <span class="played-at">29 October 2024, 17:33</span>
-                </div>
-            </li>
+                    <div class="track-info" onclick="window.open('https://open.spotify.com/track/0NWSbSANC3iTpKxSMXmQ1J', '_blank')">
+                        <img src="https://i.scdn.co/image/ab67616d0000b273c0731bb6f383687f40fd3a5a" alt="Katliam 2 Kapak Resmi" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Katliam 2</div>
+                            <div class="track-artists">Massaka, Yener Çevik, Sansar Salvo, Anıl Piyancı, Velet, Mon...</div>
+                        </div>
+                        <div class="played-at">18:06 - Bugün</div>
+                    </div>
         
-            <li>
-                <img src="https://i.scdn.co/image/ab67616d0000b273e2ce209fba01bad0ff6fadb0" alt="Cover" class="track-image">
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/2owWvIUIG8jfMsE8VmbH0u" target="_blank">
-                        <span class="track-name">İyi Uykular Peder</span>
-                        <span class="track-artists">Rota</span>  <!-- Sanatçılar burada -->
-                    </a>
-                    <span class="played-at">29 October 2024, 17:27</span>
-                </div>
-            </li>
+                    <div class="track-info" onclick="window.open('https://open.spotify.com/track/2d9OOVDxGEYQhpp4O9R69n', '_blank')">
+                        <img src="https://i.scdn.co/image/ab67616d0000b2738fb4a6f333c7e7a7ed446be6" alt="Başım Belada Kapak Resmi" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Başım Belada</div>
+                            <div class="track-artists">Orchi, Çağrı Sinci</div>
+                        </div>
+                        <div class="played-at">18:00 - Bugün</div>
+                    </div>
         
-            <li>
-                <img src="https://i.scdn.co/image/ab67616d0000b27346bb5950f4bb01ffeea25e7d" alt="Cover" class="track-image">
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/6yKLl0kEF0wHQguh8ZIgOX" target="_blank">
-                        <span class="track-name">Mola</span>
-                        <span class="track-artists">Tankurt Manas</span>  <!-- Sanatçılar burada -->
-                    </a>
-                    <span class="played-at">29 October 2024, 17:25</span>
-                </div>
-            </li>
+                    <div class="track-info" onclick="window.open('https://open.spotify.com/track/4HeXZwvwjFTnCLq6ASYngI', '_blank')">
+                        <img src="https://i.scdn.co/image/ab67616d0000b27366aba565571583e6c398ce0e" alt="Skimde Değil Kapak Resmi" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Skimde Değil</div>
+                            <div class="track-artists">Cegıd</div>
+                        </div>
+                        <div class="played-at">17:57 - Bugün</div>
+                    </div>
         
-            <li>
-                <img src="https://i.scdn.co/image/ab67616d0000b2734fed89860a0fff272c5141d6" alt="Cover" class="track-image">
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/2AZgUbBjSGzvdZO1725fvp" target="_blank">
-                        <span class="track-name">Katliam 3</span>
-                        <span class="track-artists">Massaka, Anıl Piyancı, Sansar Salvo, Dr. Fuchs, Canbay, Wolker, Şanışer, Rota, Hayki, Yener Çevik, Tekmill, Defkhan, Sirdav</span>  <!-- Sanatçılar burada -->
-                    </a>
-                    <span class="played-at">29 October 2024, 17:21</span>
-                </div>
-            </li>
+                    <div class="track-info" onclick="window.open('https://open.spotify.com/track/0QuKutgaaa0Q1WUZEnrZ93', '_blank')">
+                        <img src="https://i.scdn.co/image/ab67616d0000b27379dbe6c33d218de4aa59223b" alt="Sönen Sigaralar Kapak Resmi" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Sönen Sigaralar</div>
+                            <div class="track-artists">Ati242</div>
+                        </div>
+                        <div class="played-at">17:53 - Bugün</div>
+                    </div>
         
-            <li>
-                <img src="https://i.scdn.co/image/ab67616d0000b273e8bb52e5e59f15847464c0db" alt="Cover" class="track-image">
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/2Tj1nNCeeu1Vgl8xHe3Q3r" target="_blank">
-                        <span class="track-name">Maskem</span>
-                        <span class="track-artists">Diablo 63</span>  <!-- Sanatçılar burada -->
-                    </a>
-                    <span class="played-at">29 October 2024, 17:15</span>
-                </div>
-            </li>
+                    <div class="track-info" onclick="window.open('https://open.spotify.com/track/40fqDPv4drwaKnX047hxY6', '_blank')">
+                        <img src="https://i.scdn.co/image/ab67616d0000b27339367660107b68d2a587efc7" alt="Yeraltı Edebiyatı Kapak Resmi" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Yeraltı Edebiyatı</div>
+                            <div class="track-artists">Gazapizm</div>
+                        </div>
+                        <div class="played-at">17:50 - Bugün</div>
+                    </div>
         
-            <li>
-                <img src="https://i.scdn.co/image/ab67616d0000b27398d4d52d59a267b773a863af" alt="Cover" class="track-image">
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/3AZU2sN8F2Hixkfs3ZQQz1" target="_blank">
-                        <span class="track-name">Cehennemin Dibi</span>
-                        <span class="track-artists">Massaka</span>  <!-- Sanatçılar burada -->
-                    </a>
-                    <span class="played-at">29 October 2024, 17:06</span>
-                </div>
-            </li>
+                    <div class="track-info" onclick="window.open('https://open.spotify.com/track/3q9yRSQ9UGSlaDj5SUGZqq', '_blank')">
+                        <img src="https://i.scdn.co/image/ab67616d0000b2738870af90650ea8a386a297cf" alt="Olmasa Da Olur Kapak Resmi" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Olmasa Da Olur</div>
+                            <div class="track-artists">No.1</div>
+                        </div>
+                        <div class="played-at">17:46 - Bugün</div>
+                    </div>
         
-            <li>
-                <img src="https://i.scdn.co/image/ab67616d0000b27375df7480a73f3f77acc2ec7d" alt="Cover" class="track-image">
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/6cJrCsCdJcfP5xCzJVajEV" target="_blank">
-                        <span class="track-name">Kim Bilir</span>
-                        <span class="track-artists">Ceza</span>  <!-- Sanatçılar burada -->
-                    </a>
-                    <span class="played-at">29 October 2024, 14:46</span>
-                </div>
-            </li>
+                    <div class="track-info" onclick="window.open('https://open.spotify.com/track/7hvmCxOlmfi07zT7VpesfP', '_blank')">
+                        <img src="https://i.scdn.co/image/ab67616d0000b2734327bbb41791b5fdc8269a24" alt="Iblis Kapak Resmi" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Iblis</div>
+                            <div class="track-artists">Massaka</div>
+                        </div>
+                        <div class="played-at">17:44 - Bugün</div>
+                    </div>
         
-            <li>
-                <img src="https://i.scdn.co/image/ab67616d0000b2738053f330b7d35f46b6cccda1" alt="Cover" class="track-image">
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/2mXwaAWKyu3iRYdm0VdfOP" target="_blank">
-                        <span class="track-name">Keksin - Remastered</span>
-                        <span class="track-artists">Fuat, Gris, Boba Fettt</span>  <!-- Sanatçılar burada -->
-                    </a>
-                    <span class="played-at">29 October 2024, 14:24</span>
-                </div>
-            </li>
+                    <div class="track-info" onclick="window.open('https://open.spotify.com/track/23V3mBeNSYuVUNcflnjyrd', '_blank')">
+                        <img src="https://i.scdn.co/image/ab67616d0000b273cbad8a21da94fae3ebe96580" alt="Beni Burdan Çıkarın Kapak Resmi" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Beni Burdan Çıkarın</div>
+                            <div class="track-artists">Pit10</div>
+                        </div>
+                        <div class="played-at">17:40 - Bugün</div>
+                    </div>
         
-            <li>
-                <img src="https://i.scdn.co/image/ab67616d0000b273c5bd7b30ad15281038b0d6e0" alt="Cover" class="track-image">
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/63fjQLjhsxOAJvuud4qdJX" target="_blank">
-                        <span class="track-name">Son Kez</span>
-                        <span class="track-artists">Rota</span>  <!-- Sanatçılar burada -->
-                    </a>
-                    <span class="played-at">29 October 2024, 14:20</span>
-                </div>
-            </li>
+                    <div class="track-info" onclick="window.open('https://open.spotify.com/track/7DdvDxrc8iYum3tIdS7Lim', '_blank')">
+                        <img src="https://i.scdn.co/image/ab67616d0000b27366aba565571583e6c398ce0e" alt="Herşeyin Bir Bedeli Var Kapak Resmi" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Herşeyin Bir Bedeli Var</div>
+                            <div class="track-artists">Cegıd</div>
+                        </div>
+                        <div class="played-at">17:37 - Bugün</div>
+                    </div>
         
-            <li>
-                <img src="https://i.scdn.co/image/ab67616d0000b27379dbe6c33d218de4aa59223b" alt="Cover" class="track-image">
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/5XQ1eD5Esz1CzdjH9bzbzn" target="_blank">
-                        <span class="track-name">Ait Hissetmiyorum</span>
-                        <span class="track-artists">Ati242</span>  <!-- Sanatçılar burada -->
-                    </a>
-                    <span class="played-at">29 October 2024, 14:15</span>
-                </div>
-            </li>
+                    <div class="track-info" onclick="window.open('https://open.spotify.com/track/4aXbYXcwQhy7wmWeFJnOLw', '_blank')">
+                        <img src="https://i.scdn.co/image/ab67616d0000b273a140e824efaf5b690e205c7b" alt="Reenkarne Kapak Resmi" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Reenkarne</div>
+                            <div class="track-artists">Stabil</div>
+                        </div>
+                        <div class="played-at">17:33 - Bugün</div>
+                    </div>
         
-            <li>
-                <img src="https://i.scdn.co/image/ab67616d0000b273b7ab5329c1fa1f3bb20abd0d" alt="Cover" class="track-image">
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/13pwegOE6Q3dsZeFc6tds2" target="_blank">
-                        <span class="track-name">Soguk Mevsim</span>
-                        <span class="track-artists">Massaka, Ceza, Dr. Fuchs</span>  <!-- Sanatçılar burada -->
-                    </a>
-                    <span class="played-at">29 October 2024, 14:13</span>
-                </div>
-            </li>
+                    <div class="track-info" onclick="window.open('https://open.spotify.com/track/2owWvIUIG8jfMsE8VmbH0u', '_blank')">
+                        <img src="https://i.scdn.co/image/ab67616d0000b273e2ce209fba01bad0ff6fadb0" alt="İyi Uykular Peder Kapak Resmi" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">İyi Uykular Peder</div>
+                            <div class="track-artists">Rota</div>
+                        </div>
+                        <div class="played-at">17:27 - Bugün</div>
+                    </div>
         
-        </ul>
+                </ul>
+            </div>
+        </div>
     </body>
     </html>
     
