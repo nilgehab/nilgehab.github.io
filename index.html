@@ -2,7 +2,7 @@
     <html>
     <head>
         <title>bilgehan</title>
-        <link rel="icon" href="https://i.hizliresim.com/l8rigkg.png" type="image/png">
+          <link rel="icon" href="https://i.hizliresim.com/l8rigkg.png" type="image/png">
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -10,100 +10,363 @@
                 background-size: cover;
                 color: #fff;
                 margin: 0;
-                padding: 0;
-            }
-            .container {
-                max-width: 600px;
-                margin: 30px auto;
-                background: rgba(0, 0, 0, 0.8);
-                border-radius: 10px;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-                overflow: hidden;
-            }
-            .tabs {
                 display: flex;
-                justify-content: space-around;
-                background: rgba(255, 255, 255, 0.1);
-            }
-            .tab {
-                flex: 1;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
                 text-align: center;
-                padding: 15px;
-                cursor: pointer;
-                transition: background 0.3s;
             }
-            .tab:hover {
-                background: rgba(255, 255, 255, 0.2);
-            }
-            .tab.active {
-                background: rgba(255, 255, 255, 0.3);
-                font-weight: bold;
-            }
-            .content {
-                position: relative;
+
+a {
+    color: #fff; /* Metin rengini beyaz yap */
+    text-decoration: none; /* Altı çizgiyi kaldır */
+}
+
+a:hover {
+    color: #ddd; /* Üzerine gelindiğinde rengini açık gri yap */
+}
+
+            .card {
+                background: rgba(0, 0, 0, 0.7);
+                border-radius: 15px;
+                padding: 30px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+                width: 90%;
+                max-width: 500px;
+                height: auto;
+                max-height: 90%;
                 overflow: hidden;
+                margin: 0 10px;
             }
-            .section {
-                display: none;
-                padding: 20px;
+            .profile-image {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                margin-bottom: 20px;
             }
-            .section.active {
-                display: block;
+            .social-icons {
+                margin: 20px 0;
             }
-            ul {
-                list-style: none;
-                padding: 0;
+            .social-icons img {
+                width: 40px;
+                margin: 0 10px;
+            }
+            h1 {
                 margin: 0;
+                font-size: 2em;
             }
-            li {
-                padding: 10px;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            .description {
+                font-size: 1.1em;
+                margin: 10px 0;
             }
-            li:last-child {
-                border-bottom: none;
+            .recent-tracks {
+                margin-top: 20px;
+                max-height: 250px;
+                overflow-y: auto;
+                scrollbar-width: thin;
+                scrollbar-color: #888 #333;
+            }
+            .recent-tracks::-webkit-scrollbar {
+                width: 12px;
+            }
+            .recent-tracks::-webkit-scrollbar-track {
+                background: #333;
+                border-radius: 10px;
+            }
+            .recent-tracks::-webkit-scrollbar-thumb {
+                background-color: #888;
+                border-radius: 10px;
+            }
+            .recent-tracks::-webkit-scrollbar-thumb:hover {
+                background-color: #555;
+            }
+            .track-info {
+                display: flex;
+                align-items: center;
+                padding: 10px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+                cursor: pointer;
+            }
+            .track-image {
+                width: 60px;
+                height: 60px;
+                border-radius: 5px;
+                margin-right: 15px;  /* Görsel ile parça adı arasındaki boşluk */
+            }
+            .track-details {
+                flex: 1;  /* Alanın eşit şekilde paylaşılması */
+                display: flex;
+                flex-direction: column; /* Parça adı ve sanatçı adı dikey olarak hizalanacak */
+            }
+            .track-name {
+                font-weight: bold;
+                font-size: 1em;
+                margin-bottom: 5px; /* Parça adı ile sanatçı adı arasındaki boşluk */
+            }
+            .track-artists {
+                font-size: 0.9em;
+                color: #aaa;
+            }
+            .played-at {
+                font-size: 0.9em;
+                color: #aaa;
+                margin-left: auto; /* Sağ tarafa yaslamak için */
+            }
+            @media (max-width: 600px) {
+                .card {
+                    width: 95%;
+                }
+                h1 {
+                    font-size: 1.8em;
+                }
+                .description {
+                    font-size: 1em;
+                }
+            }
+            @media (max-width: 400px) {
+                h1 {
+                    font-size: 1.5em;
+                }
+                .description {
+                    font-size: 0.9em;
+                }
             }
         </style>
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                const tabs = document.querySelectorAll(".tab");
-                const sections = document.querySelectorAll(".section");
-
-                tabs.forEach((tab, index) => {
-                    tab.addEventListener("click", () => {
-                        tabs.forEach(tab => tab.classList.remove("active"));
-                        sections.forEach(section => section.classList.remove("active"));
-
-                        tab.classList.add("active");
-                        sections[index].classList.add("active");
-                    });
-                });
-            });
-        </script>
     </head>
     <body>
-        <div class="container">
-            <div class="tabs">
-                <div class="tab active">Şu Anda Dinlenen</div>
-                <div class="tab">Son Dinlediklerim</div>
-                <div class="tab">En Çok Dinlenenler</div>
+        <div class="card">
+            <img src="https://i.hizliresim.com/lje98hq.jpg" alt="Profil Fotoğrafım" class="profile-image">
+            <h1>Ahmet Bilgehan Dedelin</h1>
+            <p class="description">hippity hoppity.</p>
+            <div class="social-icons">
+                <a href="https://github.com/nilgehab" target="_blank"><img src="https://i.hizliresim.com/kut8c3h.png" alt="GitHub"></a>
+                <a href="https://open.spotify.com/user/314kcnraoymjo3eui6awap7vrr5u" target="_blank"><img src="https://i.hizliresim.com/li3rhc7.png" alt="Spotify"></a>
+                <a href="https://www.instagram.com/bilgehandle/" target="_blank"><img src="https://i.hizliresim.com/emp8i5p.png" alt="Instagram"></a>
             </div>
-            <div class="content">
-                <div class="section active">
-                    <h2>Şu Anda Dinlenen Şarkı</h2>
-                    <p>Şu anda şarkı dinlenmiyor.</p>
+
+            <h2>Son Dinlediklerim</h2>
+            <div class="recent-tracks">
+    
+                <div class="track-info">
+                    <a href="https://open.spotify.com/track/5LPgor25Umb3jZgvTXvBeh" target="_blank" style="display: flex; align-items: center; width: 100%;">
+                        <img src="https://i.scdn.co/image/ab67616d0000b273d95422e6cdbc506a248234bc" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Sen Benim Şarkılarımsın</div>
+                            <div class="track-artists">Cem Adrian, Hande Mehan</div>
+                        </div>
+                        <div class="played-at">05:37<br>Bugün</div>
+                    </a>
                 </div>
-                <div class="section">
-                    <h2>Son Dinlediklerim</h2>
-                    <ul>
-                        <li>Sen Benim Şarkılarımsın - Cem Adrian, Hande Mehan</li><li>Hatıram Olsun - Cem Adrian</li><li>Veda Busesi - Cem Adrian</li><li>Ayrılık - Cem Adrian</li><li>Ben Seni Çok Sevdim - Cem Adrian</li><li>Sweet Child O' Mine - Guns N' Roses</li><li>Nice Guys Finish Last - Green Day</li><li>Don't Call Me White - NOFX</li><li>Bad Habit - The Offspring</li><li>American Jesus - Bad Religion</li><li>What's My Age Again? - blink-182</li><li>Original Prankster - The Offspring, Redman</li><li>Öyle Yalnız - Hande Mehan, Cem Adrian</li><li>Her Şey Çok Sevmekten - Nükhet Duru, Cem Adrian</li><li>Ben Seni Çok Sevdim - Ajda Pekkan, Cem Adrian</li><li>Gönül Yarası - Hüsnü Arkan, Cem Adrian</li><li>Kum Gibi (feat. Hande Mehan) - Cem Adrian, Hande Mehan</li><li>Duydum Ki Unutmuşsun - Cem Adrian</li><li>Bana Sorma - Cem Adrian, Melek Mosso</li><li>Bana Unutmayı Anlat - Cem Adrian, Emir Can İğrek</li>
-                    </ul>
+            
+                <div class="track-info">
+                    <a href="https://open.spotify.com/track/1L975sApMlmsBVdAZUWPp3" target="_blank" style="display: flex; align-items: center; width: 100%;">
+                        <img src="https://i.scdn.co/image/ab67616d0000b2738cc717363676c8c4083ecc00" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Hatıram Olsun</div>
+                            <div class="track-artists">Cem Adrian</div>
+                        </div>
+                        <div class="played-at">05:33<br>Bugün</div>
+                    </a>
                 </div>
-                <div class="section">
-                    <h2>Son 1 Ayda En Çok Dinlenen Şarkılar</h2>
-                    <ul>
-                        
-                    </ul>
+            
+                <div class="track-info">
+                    <a href="https://open.spotify.com/track/1VQccdfjHo9RZyBfCENyx9" target="_blank" style="display: flex; align-items: center; width: 100%;">
+                        <img src="https://i.scdn.co/image/ab67616d0000b273d9c1e893d79e56cd090cbd64" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Veda Busesi</div>
+                            <div class="track-artists">Cem Adrian</div>
+                        </div>
+                        <div class="played-at">05:28<br>Bugün</div>
+                    </a>
                 </div>
+            
+                <div class="track-info">
+                    <a href="https://open.spotify.com/track/27wceaKKSeGJPThIo2pJFn" target="_blank" style="display: flex; align-items: center; width: 100%;">
+                        <img src="https://i.scdn.co/image/ab67616d0000b2737ead6f52520629e21a046a39" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Ayrılık</div>
+                            <div class="track-artists">Cem Adrian</div>
+                        </div>
+                        <div class="played-at">05:25<br>Bugün</div>
+                    </a>
+                </div>
+            
+                <div class="track-info">
+                    <a href="https://open.spotify.com/track/54mnEflmUCOYdX5IZlqZCY" target="_blank" style="display: flex; align-items: center; width: 100%;">
+                        <img src="https://i.scdn.co/image/ab67616d0000b2734ecd2101708ea94d5a6998a1" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Ben Seni Çok Sevdim</div>
+                            <div class="track-artists">Cem Adrian</div>
+                        </div>
+                        <div class="played-at">05:21<br>Bugün</div>
+                    </a>
+                </div>
+            
+                <div class="track-info">
+                    <a href="https://open.spotify.com/track/7snQQk1zcKl8gZ92AnueZW" target="_blank" style="display: flex; align-items: center; width: 100%;">
+                        <img src="https://i.scdn.co/image/ab67616d0000b27321ebf49b3292c3f0f575f0f5" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Sweet Child O' Mine</div>
+                            <div class="track-artists">Guns N' Roses</div>
+                        </div>
+                        <div class="played-at">01:14<br>Bugün</div>
+                    </a>
+                </div>
+            
+                <div class="track-info">
+                    <a href="https://open.spotify.com/track/0EonrvTzzNScmk7QT4L3dw" target="_blank" style="display: flex; align-items: center; width: 100%;">
+                        <img src="https://i.scdn.co/image/ab67616d0000b273da4f6706ae0f2501c61ce776" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Nice Guys Finish Last</div>
+                            <div class="track-artists">Green Day</div>
+                        </div>
+                        <div class="played-at">01:08<br>Bugün</div>
+                    </a>
+                </div>
+            
+                <div class="track-info">
+                    <a href="https://open.spotify.com/track/0cntShbC3GmWXygfH98brk" target="_blank" style="display: flex; align-items: center; width: 100%;">
+                        <img src="https://i.scdn.co/image/ab67616d0000b273b00c510f182b92234ca2b93d" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Don't Call Me White</div>
+                            <div class="track-artists">NOFX</div>
+                        </div>
+                        <div class="played-at">01:06<br>Bugün</div>
+                    </a>
+                </div>
+            
+                <div class="track-info">
+                    <a href="https://open.spotify.com/track/5tFzUj1jV09bo4wBQWSbDl" target="_blank" style="display: flex; align-items: center; width: 100%;">
+                        <img src="https://i.scdn.co/image/ab67616d0000b2730158cbde70672dd821972907" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Bad Habit</div>
+                            <div class="track-artists">The Offspring</div>
+                        </div>
+                        <div class="played-at">01:03<br>Bugün</div>
+                    </a>
+                </div>
+            
+                <div class="track-info">
+                    <a href="https://open.spotify.com/track/5TZn3LQSWwVPnBlPgFKb54" target="_blank" style="display: flex; align-items: center; width: 100%;">
+                        <img src="https://i.scdn.co/image/ab67616d0000b27304047acfa8e18bcc64832359" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">American Jesus</div>
+                            <div class="track-artists">Bad Religion</div>
+                        </div>
+                        <div class="played-at">00:59<br>Bugün</div>
+                    </a>
+                </div>
+            
+                <div class="track-info">
+                    <a href="https://open.spotify.com/track/4LJhJ6DQS7NwE7UKtvcM52" target="_blank" style="display: flex; align-items: center; width: 100%;">
+                        <img src="https://i.scdn.co/image/ab67616d0000b2736da502e35a7a3e48de2b0f74" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">What's My Age Again?</div>
+                            <div class="track-artists">blink-182</div>
+                        </div>
+                        <div class="played-at">00:56<br>Bugün</div>
+                    </a>
+                </div>
+            
+                <div class="track-info">
+                    <a href="https://open.spotify.com/track/6gfDXAX85YWdVwxpbz0npv" target="_blank" style="display: flex; align-items: center; width: 100%;">
+                        <img src="https://i.scdn.co/image/ab67616d0000b2732d4c593f0f35672767d881a9" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Original Prankster</div>
+                            <div class="track-artists">The Offspring, Redman</div>
+                        </div>
+                        <div class="played-at">00:53<br>Bugün</div>
+                    </a>
+                </div>
+            
+                <div class="track-info">
+                    <a href="https://open.spotify.com/track/4Ur0RJ7hKz28wbwIv7M9um" target="_blank" style="display: flex; align-items: center; width: 100%;">
+                        <img src="https://i.scdn.co/image/ab67616d0000b273589ff7695e692a50ea4c35d8" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Öyle Yalnız</div>
+                            <div class="track-artists">Hande Mehan, Cem Adrian</div>
+                        </div>
+                        <div class="played-at">18:32<br>Dün</div>
+                    </a>
+                </div>
+            
+                <div class="track-info">
+                    <a href="https://open.spotify.com/track/2BboykGNXoEq3IbCs8VBXP" target="_blank" style="display: flex; align-items: center; width: 100%;">
+                        <img src="https://i.scdn.co/image/ab67616d0000b2739dd3ff83f88f0ae52fba6f49" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Her Şey Çok Sevmekten</div>
+                            <div class="track-artists">Nükhet Duru, Cem Adrian</div>
+                        </div>
+                        <div class="played-at">18:19<br>Dün</div>
+                    </a>
+                </div>
+            
+                <div class="track-info">
+                    <a href="https://open.spotify.com/track/6GgKKVSitwllG45SF3MIhq" target="_blank" style="display: flex; align-items: center; width: 100%;">
+                        <img src="https://i.scdn.co/image/ab67616d0000b2739dd3ff83f88f0ae52fba6f49" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Ben Seni Çok Sevdim</div>
+                            <div class="track-artists">Ajda Pekkan, Cem Adrian</div>
+                        </div>
+                        <div class="played-at">18:15<br>Dün</div>
+                    </a>
+                </div>
+            
+                <div class="track-info">
+                    <a href="https://open.spotify.com/track/6xEsWxZWifHHyWHNNjdPVE" target="_blank" style="display: flex; align-items: center; width: 100%;">
+                        <img src="https://i.scdn.co/image/ab67616d0000b27371309d76fe472069f17a47c5" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Gönül Yarası</div>
+                            <div class="track-artists">Hüsnü Arkan, Cem Adrian</div>
+                        </div>
+                        <div class="played-at">18:11<br>Dün</div>
+                    </a>
+                </div>
+            
+                <div class="track-info">
+                    <a href="https://open.spotify.com/track/1LoTh7xLiwhnlA4Sc80Q8D" target="_blank" style="display: flex; align-items: center; width: 100%;">
+                        <img src="https://i.scdn.co/image/ab67616d0000b273a984b067e45986db8e8df51f" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Kum Gibi (feat. Hande Mehan)</div>
+                            <div class="track-artists">Cem Adrian, Hande Mehan</div>
+                        </div>
+                        <div class="played-at">18:07<br>Dün</div>
+                    </a>
+                </div>
+            
+                <div class="track-info">
+                    <a href="https://open.spotify.com/track/14QdhtnSncf4RtguVp9LEq" target="_blank" style="display: flex; align-items: center; width: 100%;">
+                        <img src="https://i.scdn.co/image/ab67616d0000b273d9c1e893d79e56cd090cbd64" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Duydum Ki Unutmuşsun</div>
+                            <div class="track-artists">Cem Adrian</div>
+                        </div>
+                        <div class="played-at">18:03<br>Dün</div>
+                    </a>
+                </div>
+            
+                <div class="track-info">
+                    <a href="https://open.spotify.com/track/2EGOO7F1QWMXFRGRmLCYQ1" target="_blank" style="display: flex; align-items: center; width: 100%;">
+                        <img src="https://i.scdn.co/image/ab67616d0000b273fa9633146ef6dd805891b1cb" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Bana Sorma</div>
+                            <div class="track-artists">Cem Adrian, Melek Mosso</div>
+                        </div>
+                        <div class="played-at">17:59<br>Dün</div>
+                    </a>
+                </div>
+            
+                <div class="track-info">
+                    <a href="https://open.spotify.com/track/46zrFCqcWpg4FgPXx5ou3K" target="_blank" style="display: flex; align-items: center; width: 100%;">
+                        <img src="https://i.scdn.co/image/ab67616d0000b273ab8764c8bb1cbc2f4f7a91ee" class="track-image">
+                        <div class="track-details">
+                            <div class="track-name">Bana Unutmayı Anlat</div>
+                            <div class="track-artists">Cem Adrian, Emir Can İğrek</div>
+                        </div>
+                        <div class="played-at">17:54<br>Dün</div>
+                    </a>
+                </div>
+            
             </div>
         </div>
     </body>
