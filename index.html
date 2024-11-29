@@ -17,14 +17,14 @@
                 text-align: center;
             }
 
-            a {
-                color: #fff;
-                text-decoration: none;
-            }
+a {
+    color: #fff; /* Metin rengini beyaz yap */
+    text-decoration: none; /* Altı çizgiyi kaldır */
+}
 
-            a:hover {
-                color: #ddd;
-            }
+a:hover {
+    color: #ddd; /* Üzerine gelindiğinde rengini açık gri yap */
+}
 
             .card {
                 background: rgba(0, 0, 0, 0.7);
@@ -44,15 +44,41 @@
                 border-radius: 50%;
                 margin-bottom: 20px;
             }
+            .social-icons {
+                margin: 20px 0;
+            }
             .social-icons img {
                 width: 40px;
                 margin: 0 10px;
+            }
+            h1 {
+                margin: 0;
+                font-size: 2em;
+            }
+            .description {
+                font-size: 1.1em;
+                margin: 10px 0;
             }
             .recent-tracks {
                 margin-top: 20px;
                 max-height: 250px;
                 overflow-y: auto;
                 scrollbar-width: thin;
+                scrollbar-color: #888 #333;
+            }
+            .recent-tracks::-webkit-scrollbar {
+                width: 12px;
+            }
+            .recent-tracks::-webkit-scrollbar-track {
+                background: #333;
+                border-radius: 10px;
+            }
+            .recent-tracks::-webkit-scrollbar-thumb {
+                background-color: #888;
+                border-radius: 10px;
+            }
+            .recent-tracks::-webkit-scrollbar-thumb:hover {
+                background-color: #555;
             }
             .track-info {
                 display: flex;
@@ -63,7 +89,47 @@
             }
             .track-image {
                 width: 60px;
-                margin-right: 15px;
+                height: 60px;
+                border-radius: 5px;
+                margin-right: 15px;  /* Görsel ile parça adı arasındaki boşluk */
+            }
+            .track-details {
+                flex: 1;  /* Alanın eşit şekilde paylaşılması */
+                display: flex;
+                flex-direction: column; /* Parça adı ve sanatçı adı dikey olarak hizalanacak */
+            }
+            .track-name {
+                font-weight: bold;
+                font-size: 1em;
+                margin-bottom: 5px; /* Parça adı ile sanatçı adı arasındaki boşluk */
+            }
+            .track-artists {
+                font-size: 0.9em;
+                color: #aaa;
+            }
+            .played-at {
+                font-size: 0.9em;
+                color: #aaa;
+                margin-left: auto; /* Sağ tarafa yaslamak için */
+            }
+            @media (max-width: 600px) {
+                .card {
+                    width: 95%;
+                }
+                h1 {
+                    font-size: 1.8em;
+                }
+                .description {
+                    font-size: 1em;
+                }
+            }
+            @media (max-width: 400px) {
+                h1 {
+                    font-size: 1.5em;
+                }
+                .description {
+                    font-size: 0.9em;
+                }
             }
         </style>
     </head>
@@ -71,171 +137,233 @@
         <div class="card">
             <img src="https://i.hizliresim.com/lje98hq.jpg" alt="Profil Fotoğrafım" class="profile-image">
             <h1>Ahmet Bilgehan Dedelin</h1>
-            <p>hippity hoppity.</p>
-            <div>
+            <p class="description">hippity hoppity.</p>
+            <div class="social-icons">
                 <a href="https://github.com/nilgehab" target="_blank"><img src="https://i.hizliresim.com/kut8c3h.png" alt="GitHub"></a>
                 <a href="https://open.spotify.com/user/314kcnraoymjo3eui6awap7vrr5u" target="_blank"><img src="https://i.hizliresim.com/li3rhc7.png" alt="Spotify"></a>
                 <a href="https://www.instagram.com/bilgehandle/" target="_blank"><img src="https://i.hizliresim.com/emp8i5p.png" alt="Instagram"></a>
             </div>
+
+            <h2>Son Dinlediklerim</h2>
             <div class="recent-tracks">
     
                 <div class="track-info">
-                    <a href="https://open.spotify.com/track/1d7lCm3OVA72ZfTD5SuRE7" target="_blank">
+                    <a href="https://open.spotify.com/track/1d7lCm3OVA72ZfTD5SuRE7" target="_blank" style="display: flex; align-items: center; width: 100%;">
                         <img src="https://i.scdn.co/image/ab67616d0000b273b33235787057603d2427f0cb" class="track-image">
-                        <div>Bir Gülü Sevdim - Cem Adrian</div>
-                        <div>14:33 (Bugün)</div>
+                        <div class="track-details">
+                            <div class="track-name">Bir Gülü Sevdim</div>
+                            <div class="track-artists">Cem Adrian</div>
+                        </div>
+                        <div class="played-at">14:33<br>Bugün</div>
                     </a>
                 </div>
             
                 <div class="track-info">
-                    <a href="https://open.spotify.com/track/4Ur0RJ7hKz28wbwIv7M9um" target="_blank">
+                    <a href="https://open.spotify.com/track/4Ur0RJ7hKz28wbwIv7M9um" target="_blank" style="display: flex; align-items: center; width: 100%;">
                         <img src="https://i.scdn.co/image/ab67616d0000b273589ff7695e692a50ea4c35d8" class="track-image">
-                        <div>Öyle Yalnız - Hande Mehan, Cem Adrian</div>
-                        <div>14:29 (Bugün)</div>
+                        <div class="track-details">
+                            <div class="track-name">Öyle Yalnız</div>
+                            <div class="track-artists">Hande Mehan, Cem Adrian</div>
+                        </div>
+                        <div class="played-at">14:29<br>Bugün</div>
                     </a>
                 </div>
             
                 <div class="track-info">
-                    <a href="https://open.spotify.com/track/7jHu9LdV7As0aPccJGwuA0" target="_blank">
+                    <a href="https://open.spotify.com/track/7jHu9LdV7As0aPccJGwuA0" target="_blank" style="display: flex; align-items: center; width: 100%;">
                         <img src="https://i.scdn.co/image/ab67616d0000b2737e82dd5fddc7dc5caf9cc079" class="track-image">
-                        <div>Yaşamak Öldürür P1 - Joker</div>
-                        <div>14:25 (Bugün)</div>
+                        <div class="track-details">
+                            <div class="track-name">Yaşamak Öldürür P1</div>
+                            <div class="track-artists">Joker</div>
+                        </div>
+                        <div class="played-at">14:25<br>Bugün</div>
                     </a>
                 </div>
             
                 <div class="track-info">
-                    <a href="https://open.spotify.com/track/6vqCjNo3Xak8eqSFUn80Uu" target="_blank">
+                    <a href="https://open.spotify.com/track/6vqCjNo3Xak8eqSFUn80Uu" target="_blank" style="display: flex; align-items: center; width: 100%;">
                         <img src="https://i.scdn.co/image/ab67616d0000b273dea56d4f8caf4a2e93f591a1" class="track-image">
-                        <div>Yanımda - Beta Berk Bayındır, Server Uraz</div>
-                        <div>12:17 (Bugün)</div>
+                        <div class="track-details">
+                            <div class="track-name">Yanımda</div>
+                            <div class="track-artists">Beta Berk Bayındır, Server Uraz</div>
+                        </div>
+                        <div class="played-at">12:17<br>Bugün</div>
                     </a>
                 </div>
             
                 <div class="track-info">
-                    <a href="https://open.spotify.com/track/6qHFBROC2ycxUwejw90z0j" target="_blank">
+                    <a href="https://open.spotify.com/track/6qHFBROC2ycxUwejw90z0j" target="_blank" style="display: flex; align-items: center; width: 100%;">
                         <img src="https://i.scdn.co/image/ab67616d0000b273dea56d4f8caf4a2e93f591a1" class="track-image">
-                        <div>Bay Bay - Beta Berk Bayındır, Şehinşah, Hidra</div>
-                        <div>12:14 (Bugün)</div>
+                        <div class="track-details">
+                            <div class="track-name">Bay Bay</div>
+                            <div class="track-artists">Beta Berk Bayındır, Şehinşah, Hidra</div>
+                        </div>
+                        <div class="played-at">12:14<br>Bugün</div>
                     </a>
                 </div>
             
                 <div class="track-info">
-                    <a href="https://open.spotify.com/track/2mgN0kh91PY3hlY88s3Zz5" target="_blank">
+                    <a href="https://open.spotify.com/track/2mgN0kh91PY3hlY88s3Zz5" target="_blank" style="display: flex; align-items: center; width: 100%;">
                         <img src="https://i.scdn.co/image/ab67616d0000b2730757d61990f017fcdcb4b538" class="track-image">
-                        <div>Hikaye Bitti Çoktan - Kayra</div>
-                        <div>22:20 (Bugün)</div>
+                        <div class="track-details">
+                            <div class="track-name">Hikaye Bitti Çoktan</div>
+                            <div class="track-artists">Kayra</div>
+                        </div>
+                        <div class="played-at">22:20<br>Bugün</div>
                     </a>
                 </div>
             
                 <div class="track-info">
-                    <a href="https://open.spotify.com/track/6vqCjNo3Xak8eqSFUn80Uu" target="_blank">
+                    <a href="https://open.spotify.com/track/6vqCjNo3Xak8eqSFUn80Uu" target="_blank" style="display: flex; align-items: center; width: 100%;">
                         <img src="https://i.scdn.co/image/ab67616d0000b273dea56d4f8caf4a2e93f591a1" class="track-image">
-                        <div>Yanımda - Beta Berk Bayındır, Server Uraz</div>
-                        <div>22:19 (Bugün)</div>
+                        <div class="track-details">
+                            <div class="track-name">Yanımda</div>
+                            <div class="track-artists">Beta Berk Bayındır, Server Uraz</div>
+                        </div>
+                        <div class="played-at">22:19<br>Bugün</div>
                     </a>
                 </div>
             
                 <div class="track-info">
-                    <a href="https://open.spotify.com/track/0OPdjL2EeJ8HVbUYIXFtoI" target="_blank">
+                    <a href="https://open.spotify.com/track/0OPdjL2EeJ8HVbUYIXFtoI" target="_blank" style="display: flex; align-items: center; width: 100%;">
                         <img src="https://i.scdn.co/image/ab67616d0000b2736474f3637f6cdad41ec08cbb" class="track-image">
-                        <div>Polis Yok - Sokrat St, Pit10, Beta Berk Bayındır</div>
-                        <div>22:16 (Bugün)</div>
+                        <div class="track-details">
+                            <div class="track-name">Polis Yok</div>
+                            <div class="track-artists">Sokrat St, Pit10, Beta Berk Bayındır</div>
+                        </div>
+                        <div class="played-at">22:16<br>Bugün</div>
                     </a>
                 </div>
             
                 <div class="track-info">
-                    <a href="https://open.spotify.com/track/2d9OOVDxGEYQhpp4O9R69n" target="_blank">
+                    <a href="https://open.spotify.com/track/2d9OOVDxGEYQhpp4O9R69n" target="_blank" style="display: flex; align-items: center; width: 100%;">
                         <img src="https://i.scdn.co/image/ab67616d0000b2738fb4a6f333c7e7a7ed446be6" class="track-image">
-                        <div>Başım Belada - Orchi, Çağrı Sinci</div>
-                        <div>22:12 (Bugün)</div>
+                        <div class="track-details">
+                            <div class="track-name">Başım Belada</div>
+                            <div class="track-artists">Orchi, Çağrı Sinci</div>
+                        </div>
+                        <div class="played-at">22:12<br>Bugün</div>
                     </a>
                 </div>
             
                 <div class="track-info">
-                    <a href="https://open.spotify.com/track/6nwziqZNpBwt0lUpw0H4Lo" target="_blank">
+                    <a href="https://open.spotify.com/track/6nwziqZNpBwt0lUpw0H4Lo" target="_blank" style="display: flex; align-items: center; width: 100%;">
                         <img src="https://i.scdn.co/image/ab67616d0000b273768deab3065519541d2a1e9c" class="track-image">
-                        <div>Otuz - Beta Berk Bayındır</div>
-                        <div>22:09 (Bugün)</div>
+                        <div class="track-details">
+                            <div class="track-name">Otuz</div>
+                            <div class="track-artists">Beta Berk Bayındır</div>
+                        </div>
+                        <div class="played-at">22:09<br>Bugün</div>
                     </a>
                 </div>
             
                 <div class="track-info">
-                    <a href="https://open.spotify.com/track/32sfCZ7VPQrnRwBWQKN1Yg" target="_blank">
+                    <a href="https://open.spotify.com/track/32sfCZ7VPQrnRwBWQKN1Yg" target="_blank" style="display: flex; align-items: center; width: 100%;">
                         <img src="https://i.scdn.co/image/ab67616d0000b2730757d61990f017fcdcb4b538" class="track-image">
-                        <div>Bağışla - Kayra</div>
-                        <div>22:05 (Bugün)</div>
+                        <div class="track-details">
+                            <div class="track-name">Bağışla</div>
+                            <div class="track-artists">Kayra</div>
+                        </div>
+                        <div class="played-at">22:05<br>Bugün</div>
                     </a>
                 </div>
             
                 <div class="track-info">
-                    <a href="https://open.spotify.com/track/20cg5mxChgLS0KjNRZDY3V" target="_blank">
+                    <a href="https://open.spotify.com/track/20cg5mxChgLS0KjNRZDY3V" target="_blank" style="display: flex; align-items: center; width: 100%;">
                         <img src="https://i.scdn.co/image/ab67616d0000b273a30c8645aac12fb3f7500fa6" class="track-image">
-                        <div>Çok Yaşlıyım - Kayra</div>
-                        <div>22:02 (Bugün)</div>
+                        <div class="track-details">
+                            <div class="track-name">Çok Yaşlıyım</div>
+                            <div class="track-artists">Kayra</div>
+                        </div>
+                        <div class="played-at">22:02<br>Bugün</div>
                     </a>
                 </div>
             
                 <div class="track-info">
-                    <a href="https://open.spotify.com/track/7rC2eZNLmXElkvp6cG4Ua6" target="_blank">
+                    <a href="https://open.spotify.com/track/7rC2eZNLmXElkvp6cG4Ua6" target="_blank" style="display: flex; align-items: center; width: 100%;">
                         <img src="https://i.scdn.co/image/ab67616d0000b27309228081d608e3c6a8b9d48b" class="track-image">
-                        <div>Alt Geçit - Farazi, Kayra</div>
-                        <div>21:59 (Bugün)</div>
+                        <div class="track-details">
+                            <div class="track-name">Alt Geçit</div>
+                            <div class="track-artists">Farazi, Kayra</div>
+                        </div>
+                        <div class="played-at">21:59<br>Bugün</div>
                     </a>
                 </div>
             
                 <div class="track-info">
-                    <a href="https://open.spotify.com/track/7jHu9LdV7As0aPccJGwuA0" target="_blank">
+                    <a href="https://open.spotify.com/track/7jHu9LdV7As0aPccJGwuA0" target="_blank" style="display: flex; align-items: center; width: 100%;">
                         <img src="https://i.scdn.co/image/ab67616d0000b2737e82dd5fddc7dc5caf9cc079" class="track-image">
-                        <div>Yaşamak Öldürür P1 - Joker</div>
-                        <div>21:53 (Bugün)</div>
+                        <div class="track-details">
+                            <div class="track-name">Yaşamak Öldürür P1</div>
+                            <div class="track-artists">Joker</div>
+                        </div>
+                        <div class="played-at">21:53<br>Bugün</div>
                     </a>
                 </div>
             
                 <div class="track-info">
-                    <a href="https://open.spotify.com/track/7okcWZAudeWj1cUdT1aQHz" target="_blank">
+                    <a href="https://open.spotify.com/track/7okcWZAudeWj1cUdT1aQHz" target="_blank" style="display: flex; align-items: center; width: 100%;">
                         <img src="https://i.scdn.co/image/ab67616d0000b27302c6a557bfca009995fb040a" class="track-image">
-                        <div>Çünkü Bu - Hidra</div>
-                        <div>21:48 (Bugün)</div>
+                        <div class="track-details">
+                            <div class="track-name">Çünkü Bu</div>
+                            <div class="track-artists">Hidra</div>
+                        </div>
+                        <div class="played-at">21:48<br>Bugün</div>
                     </a>
                 </div>
             
                 <div class="track-info">
-                    <a href="https://open.spotify.com/track/78pA0f8U0cR9zVH9Td51Q9" target="_blank">
+                    <a href="https://open.spotify.com/track/78pA0f8U0cR9zVH9Td51Q9" target="_blank" style="display: flex; align-items: center; width: 100%;">
                         <img src="https://i.scdn.co/image/ab67616d0000b273eb32c6483b7b8aebbe5406a7" class="track-image">
-                        <div>Çivi - Contra</div>
-                        <div>21:45 (Bugün)</div>
+                        <div class="track-details">
+                            <div class="track-name">Çivi</div>
+                            <div class="track-artists">Contra</div>
+                        </div>
+                        <div class="played-at">21:45<br>Bugün</div>
                     </a>
                 </div>
             
                 <div class="track-info">
-                    <a href="https://open.spotify.com/track/26LBn7DGXTXwIyhqvE9hM1" target="_blank">
+                    <a href="https://open.spotify.com/track/26LBn7DGXTXwIyhqvE9hM1" target="_blank" style="display: flex; align-items: center; width: 100%;">
                         <img src="https://i.scdn.co/image/ab67616d0000b273e87dd3d4004393f80c6c91db" class="track-image">
-                        <div>Gregoryen - Sokrat St, Beta Berk Bayındır</div>
-                        <div>21:42 (Bugün)</div>
+                        <div class="track-details">
+                            <div class="track-name">Gregoryen</div>
+                            <div class="track-artists">Sokrat St, Beta Berk Bayındır</div>
+                        </div>
+                        <div class="played-at">21:42<br>Bugün</div>
                     </a>
                 </div>
             
                 <div class="track-info">
-                    <a href="https://open.spotify.com/track/4Q6TWuCGjt9qdZfXQyDOqd" target="_blank">
+                    <a href="https://open.spotify.com/track/4Q6TWuCGjt9qdZfXQyDOqd" target="_blank" style="display: flex; align-items: center; width: 100%;">
                         <img src="https://i.scdn.co/image/ab67616d0000b2739553c29faa328c56ec991e56" class="track-image">
-                        <div>Ağır Roman - Sansar Salvo</div>
-                        <div>21:39 (Bugün)</div>
+                        <div class="track-details">
+                            <div class="track-name">Ağır Roman</div>
+                            <div class="track-artists">Sansar Salvo</div>
+                        </div>
+                        <div class="played-at">21:39<br>Bugün</div>
                     </a>
                 </div>
             
                 <div class="track-info">
-                    <a href="https://open.spotify.com/track/09l6KXWKqFJxOq9mKC4Sl4" target="_blank">
+                    <a href="https://open.spotify.com/track/09l6KXWKqFJxOq9mKC4Sl4" target="_blank" style="display: flex; align-items: center; width: 100%;">
                         <img src="https://i.scdn.co/image/ab67616d0000b273cb6c4260deab338c1be43da5" class="track-image">
-                        <div>Farklı Yol - Farazi, Kodes Kahra</div>
-                        <div>21:35 (Bugün)</div>
+                        <div class="track-details">
+                            <div class="track-name">Farklı Yol</div>
+                            <div class="track-artists">Farazi, Kodes Kahra</div>
+                        </div>
+                        <div class="played-at">21:35<br>Bugün</div>
                     </a>
                 </div>
             
                 <div class="track-info">
-                    <a href="https://open.spotify.com/track/51c3X9HJEbGX9zu0SadSmF" target="_blank">
+                    <a href="https://open.spotify.com/track/51c3X9HJEbGX9zu0SadSmF" target="_blank" style="display: flex; align-items: center; width: 100%;">
                         <img src="https://i.scdn.co/image/ab67616d0000b273dea56d4f8caf4a2e93f591a1" class="track-image">
-                        <div>Bizim Yolumuz - Beta Berk Bayındır, Patron, Deniz Gürzumar</div>
-                        <div>21:33 (Bugün)</div>
+                        <div class="track-details">
+                            <div class="track-name">Bizim Yolumuz</div>
+                            <div class="track-artists">Beta Berk Bayındır, Patron, Deniz Gürzumar</div>
+                        </div>
+                        <div class="played-at">21:33<br>Bugün</div>
                     </a>
                 </div>
             
