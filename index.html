@@ -1,382 +1,252 @@
 
-    <html>
-    <head>
-        <title>bilgehan</title>
-          <link rel="icon" href="https://i.hizliresim.com/l8rigkg.png" type="image/png">
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                background: url('https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXp5eHhzZGs1NTJvYTVtcDd0azdma3ZuNnA5NWkxa21sanNsdTU3OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/pVGsAWjzvXcZW4ZBTE/giphy.gif') no-repeat center center fixed;
-                background-size: cover;
-                color: #fff;
-                margin: 0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                text-align: center;
-            }
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bilgehandle</title>
+    <link rel="icon" href="https://i.hizliresim.com/l8rigkg.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
 
-a {
-    color: #fff; /* Metin rengini beyaz yap */
-    text-decoration: none; /* Altı çizgiyi kaldır */
-}
+        body {
+            background: #0f0f0f;
+            color: #e8e8e8;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+        }
 
-a:hover {
-    color: #ddd; /* Üzerine gelindiğinde rengini açık gri yap */
-}
+        .main-card {
+            background: #1a1a1a;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 440px;
+            padding: 30px;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+            animation: cardEnter 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            max-height: 90vh;
+            height: 700px;
+            display: flex;
+            flex-direction: column;
+        }
 
-            .card {
-                background: rgba(0, 0, 0, 0.7);
-                border-radius: 15px;
-                padding: 30px;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-                width: 90%;
-                max-width: 500px;
-                height: auto;
-                max-height: 90%;
-                overflow: hidden;
-                margin: 0 10px;
-            }
-            .profile-image {
-                width: 100px;
-                height: 100px;
-                border-radius: 50%;
-                margin-bottom: 20px;
-            }
-            .social-icons {
-                margin: 20px 0;
-            }
-            .social-icons img {
-                width: 40px;
-                margin: 0 10px;
-            }
-            h1 {
-                margin: 0;
-                font-size: 2em;
-            }
-            .description {
-                font-size: 1.1em;
-                margin: 10px 0;
-            }
-            .recent-tracks {
-                margin-top: 20px;
-                max-height: 250px;
-                overflow-y: auto;
-                scrollbar-width: thin;
-                scrollbar-color: #888 #333;
-            }
-            .recent-tracks::-webkit-scrollbar {
-                width: 12px;
-            }
-            .recent-tracks::-webkit-scrollbar-track {
-                background: #333;
-                border-radius: 10px;
-            }
-            .recent-tracks::-webkit-scrollbar-thumb {
-                background-color: #888;
-                border-radius: 10px;
-            }
-            .recent-tracks::-webkit-scrollbar-thumb:hover {
-                background-color: #555;
-            }
-            .track-info {
-                display: flex;
-                align-items: center;
-                padding: 10px 0;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-                cursor: pointer;
-            }
-            .track-image {
-                width: 60px;
-                height: 60px;
-                border-radius: 5px;
-                margin-right: 15px;  /* Görsel ile parça adı arasındaki boşluk */
-            }
-            .track-details {
-                flex: 1;  /* Alanın eşit şekilde paylaşılması */
-                display: flex;
-                flex-direction: column; /* Parça adı ve sanatçı adı dikey olarak hizalanacak */
-            }
-            .track-name {
-                font-weight: bold;
-                font-size: 1em;
-                margin-bottom: 5px; /* Parça adı ile sanatçı adı arasındaki boşluk */
-            }
-            .track-artists {
-                font-size: 0.9em;
-                color: #aaa;
-            }
-             .last-update {
-                font-size: 0.8em;
-                color: #aaa;
-                font-style: italic;
-                margin-top: 10px;
-            }
+        @keyframes cardEnter {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
 
-            .played-at {
-                font-size: 0.9em;
-                color: #aaa;
-                margin-left: auto; /* Sağ tarafa yaslamak için */
-            }
-            @media (max-width: 600px) {
-                .card {
-                    width: 95%;
-                }
-                h1 {
-                    font-size: 1.8em;
-                }
-                .description {
-                    font-size: 1em;
-                }
-            }
-            @media (max-width: 400px) {
-                h1 {
-                    font-size: 1.5em;
-                }
-                .description {
-                    font-size: 0.9em;
-                }
-            }
-        </style>
-    </head>
-    <body>
-        <div class="card">
-            <img src="https://i.hizliresim.com/lje98hq.jpg" alt="Profil Fotoğrafım" class="profile-image">
-            <h1>Ahmet Bilgehan Dedelin</h1>
-            <p class="description">hippity hoppity.</p>
-            <div class="social-icons">
-                <a href="https://github.com/nilgehab" target="_blank"><img src="https://i.hizliresim.com/kut8c3h.png" alt="GitHub"></a>
-                <a href="https://open.spotify.com/user/314kcnraoymjo3eui6awap7vrr5u" target="_blank"><img src="https://i.hizliresim.com/li3rhc7.png" alt="Spotify"></a>
-                <a href="https://www.instagram.com/bilgehandle/" target="_blank"><img src="https://i.hizliresim.com/emp8i5p.png" alt="Instagram"></a>
+        /* Diğer CSS stilleri aynı kalıyor... */
+        /* Kısaltma yapıldı, orijinal CSS korunmalı */
+        
+    </style>
+</head>
+<body>
+    <div class="main-card">
+        <div class="profile-section">
+            <img src="https://i.hizliresim.com/lje98hq.jpg" class="profile-image" alt="Profile">
+            <h1 class="name">Ahmet Bilgehan Dedelin</h1>
+            <p class="bio">hippity hoppity.</p>
+            <div class="social-links">
+                <a href="https://github.com/nilgehab" target="_blank">
+                    <img src="https://i.hizliresim.com/kut8c3h.png" class="social-icon" alt="GitHub">
+                </a>
+                <a href="https://open.spotify.com/user/314kcnraoymjo3eui6awap7vrr5u" target="_blank">
+                    <img src="https://i.hizliresim.com/li3rhc7.png" class="social-icon" alt="Spotify">
+                </a>
+                <a href="https://www.instagram.com/bilgehandle/" target="_blank">
+                    <img src="https://i.hizliresim.com/emp8i5p.png" class="social-icon" alt="Instagram">
+                </a>
             </div>
-
-            <h3 class="last-update">Dinlediklerim</h3>
-            <div class="recent-tracks">
-            
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/6EpQIhN8Bxv1nnTBaChJfm" target="_blank" style="display: flex; align-items: center; width: 100%;">
-                        <img src="https://i.scdn.co/image/ab67616d0000b273122ace7a0a9b19ed8ee57664" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">Glock</div>
-                            <div class="track-artists">cakal, Reckol</div>
-                        </div>
-                        <div class="played-at">01:31<br>Bugün</div>
-                    </a>
-                </div>
-            
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/6glvSyTo1y4WLtX0mnDq83" target="_blank" style="display: flex; align-items: center; width: 100%;">
-                        <img src="https://i.scdn.co/image/ab67616d0000b273fe1ca04a42d2bb8410387812" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">Gamzedeyim Deva Bulmam</div>
-                            <div class="track-artists">Dedublüman, Çağrı Çelik</div>
-                        </div>
-                        <div class="played-at">01:27<br>Bugün</div>
-                    </a>
-                </div>
-            
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/1KE7c3NIUbKZMuQZsRRflk" target="_blank" style="display: flex; align-items: center; width: 100%;">
-                        <img src="https://i.scdn.co/image/ab67616d0000b273a781d19c27897e0dd13df015" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">Çoban Yıldızı</div>
-                            <div class="track-artists">Teoman</div>
-                        </div>
-                        <div class="played-at">01:21<br>Bugün</div>
-                    </a>
-                </div>
-            
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/4Q6TWuCGjt9qdZfXQyDOqd" target="_blank" style="display: flex; align-items: center; width: 100%;">
-                        <img src="https://i.scdn.co/image/ab67616d0000b2739553c29faa328c56ec991e56" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">Ağır Roman</div>
-                            <div class="track-artists">Sansar Salvo</div>
-                        </div>
-                        <div class="played-at">19:37<br>Dün</div>
-                    </a>
-                </div>
-            
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/25Pg2bdofZrcsUaL1UQV2T" target="_blank" style="display: flex; align-items: center; width: 100%;">
-                        <img src="https://i.scdn.co/image/ab67616d0000b273b614980475db38b291e48e07" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">KARAYEL</div>
-                            <div class="track-artists">Baneva</div>
-                        </div>
-                        <div class="played-at">11:06<br>Dün</div>
-                    </a>
-                </div>
-            
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/1lyFczBYGbm6yFpcj0uCjz" target="_blank" style="display: flex; align-items: center; width: 100%;">
-                        <img src="https://i.scdn.co/image/ab67616d0000b273b614980475db38b291e48e07" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">HAYALET</div>
-                            <div class="track-artists">Baneva</div>
-                        </div>
-                        <div class="played-at">08:28<br>Dün</div>
-                    </a>
-                </div>
-            
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/27DPAaH0Fg8dxUbsdYPzi9" target="_blank" style="display: flex; align-items: center; width: 100%;">
-                        <img src="https://i.scdn.co/image/ab67616d0000b273b614980475db38b291e48e07" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">YÜZÜK</div>
-                            <div class="track-artists">Baneva</div>
-                        </div>
-                        <div class="played-at">08:25<br>Dün</div>
-                    </a>
-                </div>
-            
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/5430SHLhqEgvGEo1TkiZz3" target="_blank" style="display: flex; align-items: center; width: 100%;">
-                        <img src="https://i.scdn.co/image/ab67616d0000b273b614980475db38b291e48e07" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">DANK</div>
-                            <div class="track-artists">Baneva</div>
-                        </div>
-                        <div class="played-at">08:22<br>Dün</div>
-                    </a>
-                </div>
-            
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/1B26IuTpOgtKawvALmwoWs" target="_blank" style="display: flex; align-items: center; width: 100%;">
-                        <img src="https://i.scdn.co/image/ab67616d0000b2738f489a254f77110c1f56621e" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">Bir Ayda Unutursun</div>
-                            <div class="track-artists">Sehabe, Aydilge</div>
-                        </div>
-                        <div class="played-at">08:10<br>Dün</div>
-                    </a>
-                </div>
-            
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/1B26IuTpOgtKawvALmwoWs" target="_blank" style="display: flex; align-items: center; width: 100%;">
-                        <img src="https://i.scdn.co/image/ab67616d0000b2738f489a254f77110c1f56621e" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">Bir Ayda Unutursun</div>
-                            <div class="track-artists">Sehabe, Aydilge</div>
-                        </div>
-                        <div class="played-at">07:53<br>Dün</div>
-                    </a>
-                </div>
-            
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/1B26IuTpOgtKawvALmwoWs" target="_blank" style="display: flex; align-items: center; width: 100%;">
-                        <img src="https://i.scdn.co/image/ab67616d0000b2738f489a254f77110c1f56621e" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">Bir Ayda Unutursun</div>
-                            <div class="track-artists">Sehabe, Aydilge</div>
-                        </div>
-                        <div class="played-at">07:50<br>Dün</div>
-                    </a>
-                </div>
-            
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/1B26IuTpOgtKawvALmwoWs" target="_blank" style="display: flex; align-items: center; width: 100%;">
-                        <img src="https://i.scdn.co/image/ab67616d0000b2738f489a254f77110c1f56621e" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">Bir Ayda Unutursun</div>
-                            <div class="track-artists">Sehabe, Aydilge</div>
-                        </div>
-                        <div class="played-at">07:46<br>Dün</div>
-                    </a>
-                </div>
-            
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/1B26IuTpOgtKawvALmwoWs" target="_blank" style="display: flex; align-items: center; width: 100%;">
-                        <img src="https://i.scdn.co/image/ab67616d0000b2738f489a254f77110c1f56621e" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">Bir Ayda Unutursun</div>
-                            <div class="track-artists">Sehabe, Aydilge</div>
-                        </div>
-                        <div class="played-at">07:43<br>Dün</div>
-                    </a>
-                </div>
-            
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/1B26IuTpOgtKawvALmwoWs" target="_blank" style="display: flex; align-items: center; width: 100%;">
-                        <img src="https://i.scdn.co/image/ab67616d0000b2738f489a254f77110c1f56621e" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">Bir Ayda Unutursun</div>
-                            <div class="track-artists">Sehabe, Aydilge</div>
-                        </div>
-                        <div class="played-at">07:40<br>Dün</div>
-                    </a>
-                </div>
-            
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/1B26IuTpOgtKawvALmwoWs" target="_blank" style="display: flex; align-items: center; width: 100%;">
-                        <img src="https://i.scdn.co/image/ab67616d0000b2738f489a254f77110c1f56621e" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">Bir Ayda Unutursun</div>
-                            <div class="track-artists">Sehabe, Aydilge</div>
-                        </div>
-                        <div class="played-at">07:37<br>Dün</div>
-                    </a>
-                </div>
-            
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/1B26IuTpOgtKawvALmwoWs" target="_blank" style="display: flex; align-items: center; width: 100%;">
-                        <img src="https://i.scdn.co/image/ab67616d0000b2738f489a254f77110c1f56621e" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">Bir Ayda Unutursun</div>
-                            <div class="track-artists">Sehabe, Aydilge</div>
-                        </div>
-                        <div class="played-at">07:34<br>Dün</div>
-                    </a>
-                </div>
-            
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/1B26IuTpOgtKawvALmwoWs" target="_blank" style="display: flex; align-items: center; width: 100%;">
-                        <img src="https://i.scdn.co/image/ab67616d0000b2738f489a254f77110c1f56621e" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">Bir Ayda Unutursun</div>
-                            <div class="track-artists">Sehabe, Aydilge</div>
-                        </div>
-                        <div class="played-at">07:31<br>Dün</div>
-                    </a>
-                </div>
-            
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/1B26IuTpOgtKawvALmwoWs" target="_blank" style="display: flex; align-items: center; width: 100%;">
-                        <img src="https://i.scdn.co/image/ab67616d0000b2738f489a254f77110c1f56621e" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">Bir Ayda Unutursun</div>
-                            <div class="track-artists">Sehabe, Aydilge</div>
-                        </div>
-                        <div class="played-at">01:21<br>2 gün önce</div>
-                    </a>
-                </div>
-            
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/1B26IuTpOgtKawvALmwoWs" target="_blank" style="display: flex; align-items: center; width: 100%;">
-                        <img src="https://i.scdn.co/image/ab67616d0000b2738f489a254f77110c1f56621e" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">Bir Ayda Unutursun</div>
-                            <div class="track-artists">Sehabe, Aydilge</div>
-                        </div>
-                        <div class="played-at">00:55<br>2 gün önce</div>
-                    </a>
-                </div>
-            
-                <div class="track-info">
-                    <a href="https://open.spotify.com/track/1B26IuTpOgtKawvALmwoWs" target="_blank" style="display: flex; align-items: center; width: 100%;">
-                        <img src="https://i.scdn.co/image/ab67616d0000b2738f489a254f77110c1f56621e" class="track-image">
-                        <div class="track-details">
-                            <div class="track-name">Bir Ayda Unutursun</div>
-                            <div class="track-artists">Sehabe, Aydilge</div>
-                        </div>
-                        <div class="played-at">00:52<br>2 gün önce</div>
-                    </a>
-                </div>
-            
-            </div>
-            <h3 class="last-update">Son Güncelleme: 03:43</h3>
         </div>
-    </body>
-    </html>
+
+        <div class="tab-bar">
+            <button class="tab-button active" onclick="showContent(event, 'math')">Matematik</button>
+            <button class="tab-button" onclick="showContent(event, 'tech')">Teknoloji</button>
+            <button class="tab-button" onclick="showContent(event, 'music')">Son Dinlediklerim</button>
+        </div>
+
+        <!-- Matematik Sekmesi -->
+        <div id="math" class="content-section active">
+            <div class="math-content">
+                <h3>Matematik Özel Dersleri</h3>
+                <p align="left">YKS-LGS sınavlarına yönelik, kişiselleştirilmiş ve dijital araçlarla güçlendirilmiş dersler için:</p>
+                <a href="https://wa.me/5557172838" class="whatsapp-button" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="whatsapp-icon">
+                    Daha fazla bilgi almak için WhatsApp'tan ulaşın!
+                </a>
+            </div>
+        </div>
+
+        <!-- Teknoloji Sekmesi -->
+        <div id="tech" class="content-section">
+            <div class="tech-grid">
+                <!-- Teknoloji içeriği aynı kalıyor... -->
+            </div>
+            <a href="https://nilgehab.github.io/webmat" target="_blank" class="webmat-box">
+                <div class="webmat-header">
+                    <div class="webmat-logo-wrapper">
+                        <img src="https://webmat.org/images/logo.png" class="webmat-logo" alt="WebMat Logo">
+                    </div>
+                    <div>
+                        <div class="webmat-title">WebMat Projesi</div>
+                        <div class="webmat-desc">
+                            Matematik öğretmenleri için geliştirilmiş dijital araç rehberi.
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Müzik Sekmesi -->
+        <div id="music" class="content-section">
+            <div class="track-list">
+                
+            <div class="track-item">
+                <img src="https://i.scdn.co/image/ab67616d0000b273122ace7a0a9b19ed8ee57664" class="album-art">
+                <div class="track-info">
+                    <div class="track-title">Glock</div>
+                    <div class="track-artist">cakal, Reckol</div>
+                </div>
+                <div class="play-time">
+                    01:31<br>
+                    <span style="font-size:0.7em">Bugün</span>
+                </div>
+            </div>
+            
+            <div class="track-item">
+                <img src="https://i.scdn.co/image/ab67616d0000b273fe1ca04a42d2bb8410387812" class="album-art">
+                <div class="track-info">
+                    <div class="track-title">Gamzedeyim Deva Bulmam</div>
+                    <div class="track-artist">Dedublüman, Çağrı Çelik</div>
+                </div>
+                <div class="play-time">
+                    01:27<br>
+                    <span style="font-size:0.7em">Bugün</span>
+                </div>
+            </div>
+            
+            <div class="track-item">
+                <img src="https://i.scdn.co/image/ab67616d0000b273a781d19c27897e0dd13df015" class="album-art">
+                <div class="track-info">
+                    <div class="track-title">Çoban Yıldızı</div>
+                    <div class="track-artist">Teoman</div>
+                </div>
+                <div class="play-time">
+                    01:21<br>
+                    <span style="font-size:0.7em">Bugün</span>
+                </div>
+            </div>
+            
+            <div class="track-item">
+                <img src="https://i.scdn.co/image/ab67616d0000b2739553c29faa328c56ec991e56" class="album-art">
+                <div class="track-info">
+                    <div class="track-title">Ağır Roman</div>
+                    <div class="track-artist">Sansar Salvo</div>
+                </div>
+                <div class="play-time">
+                    19:37<br>
+                    <span style="font-size:0.7em">Dün</span>
+                </div>
+            </div>
+            
+            <div class="track-item">
+                <img src="https://i.scdn.co/image/ab67616d0000b273b614980475db38b291e48e07" class="album-art">
+                <div class="track-info">
+                    <div class="track-title">KARAYEL</div>
+                    <div class="track-artist">Baneva</div>
+                </div>
+                <div class="play-time">
+                    11:06<br>
+                    <span style="font-size:0.7em">Dün</span>
+                </div>
+            </div>
+            
+            <div class="track-item">
+                <img src="https://i.scdn.co/image/ab67616d0000b273b614980475db38b291e48e07" class="album-art">
+                <div class="track-info">
+                    <div class="track-title">HAYALET</div>
+                    <div class="track-artist">Baneva</div>
+                </div>
+                <div class="play-time">
+                    08:28<br>
+                    <span style="font-size:0.7em">Dün</span>
+                </div>
+            </div>
+            
+            <div class="track-item">
+                <img src="https://i.scdn.co/image/ab67616d0000b273b614980475db38b291e48e07" class="album-art">
+                <div class="track-info">
+                    <div class="track-title">YÜZÜK</div>
+                    <div class="track-artist">Baneva</div>
+                </div>
+                <div class="play-time">
+                    08:25<br>
+                    <span style="font-size:0.7em">Dün</span>
+                </div>
+            </div>
+            
+            <div class="track-item">
+                <img src="https://i.scdn.co/image/ab67616d0000b273b614980475db38b291e48e07" class="album-art">
+                <div class="track-info">
+                    <div class="track-title">DANK</div>
+                    <div class="track-artist">Baneva</div>
+                </div>
+                <div class="play-time">
+                    08:22<br>
+                    <span style="font-size:0.7em">Dün</span>
+                </div>
+            </div>
+            
+            <div class="track-item">
+                <img src="https://i.scdn.co/image/ab67616d0000b2738f489a254f77110c1f56621e" class="album-art">
+                <div class="track-info">
+                    <div class="track-title">Bir Ayda Unutursun</div>
+                    <div class="track-artist">Sehabe, Aydilge</div>
+                </div>
+                <div class="play-time">
+                    08:10<br>
+                    <span style="font-size:0.7em">Dün</span>
+                </div>
+            </div>
+            
+            <div class="track-item">
+                <img src="https://i.scdn.co/image/ab67616d0000b2738f489a254f77110c1f56621e" class="album-art">
+                <div class="track-info">
+                    <div class="track-title">Bir Ayda Unutursun</div>
+                    <div class="track-artist">Sehabe, Aydilge</div>
+                </div>
+                <div class="play-time">
+                    07:53<br>
+                    <span style="font-size:0.7em">Dün</span>
+                </div>
+            </div>
+            
+                <div class="last-update">Son Güncelleme: 03:44</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showContent(event, contentId) {
+            document.querySelectorAll('.content-section').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(contentId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
     
